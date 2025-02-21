@@ -1,0 +1,21 @@
+plugins {
+    id 'com.diffplug.spotless' version '6.25.0'
+}
+
+group = 'assaviv.plugins'
+version = '1.0.3'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {}
+
+
+spotless {
+    groovy {
+        target 'src/**/*.groovy'
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}

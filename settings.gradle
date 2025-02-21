@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        mavenLocal()  // Make sure mavenLocal is added for local plugins
+        gradlePluginPortal()
+        mavenCentral()
+    }
+
+}
+
+rootProject.name = 'BypassLogic'
+
+include'bypass-logic-annotations'
+include 'bypass-logic-tests'
+includeBuild 'bypass-logic-plugin'

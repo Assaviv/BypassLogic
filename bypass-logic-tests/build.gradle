@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'assaviv.bypass.logic'
+}
+
+group = 'assaviv.plugins'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation project(":bypass-logic-annotations")
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.google.truth:truth:1.4.4'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bypassLogicConfig {
+    enabled = true
+}

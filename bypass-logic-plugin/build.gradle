@@ -1,0 +1,56 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'com.diffplug.spotless' version '6.25.0'
+}
+
+group = 'assaviv.plugins'
+version = '1.0.3'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+gradlePlugin {
+    plugins {
+        create("BypassLogic") {
+            id = "assaviv.bypass.logic"
+            implementationClass = "assaviv.bypass.logic.BypassLogicPlugin"
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation 'org.apache.groovy:groovy:4.0.17'
+
+    implementation "assaviv.annotations:bypass-logic-annotations:1.0.0"
+
+    implementation 'org.ow2.asm:asm:9.7.1'
+    implementation 'org.ow2.asm:asm-commons:9.7.1'
+    implementation 'org.ow2.asm:asm-util:9.7.1'
+}
+
+publishing {
+    repositories {
+        mavenLocal() // For local testing
+    }
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId = "assaviv.bypass.logic"
+            artifactId = "bypass-logic-plugin"
+            version = "1.0.0"
+        }
+    }
+}
+
+spotless {
+    groovy {
+        target 'src/**/*.groovy'
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
